@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_cursor</sprite>
+    <sprite>sprites\spr_island</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -19,6 +20,7 @@
   </fonts>
   <objects name="objects">
     <object>objects\console</object>
+    <object>objects\islandObject</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>

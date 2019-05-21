@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -26,7 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>///initiate
-//randomize();
+randomize();
+
+//locals
+genComplete = false;
+
+//globals
+global.genType = "";
 </string>
           </argument>
         </arguments>
@@ -81,20 +87,77 @@ menuY = 128;
           <argument>
             <kind>1</kind>
             <string>///menu movement
-//input keys
-keyEnter = max(keyboard_check_pressed(vk_enter),mouse_check_button_pressed(mb_left),0);
-
-//mouse input
-for(i = 0; i &lt; array_length_1d(menuItems); i++)
+if(room = rm_menu)
 {
-    if(mouse_y &gt; (menuY + (i-(1/2))*menuSpace) &amp;&amp; mouse_y &lt; (menuY + (i+(1/2))*menuSpace)) 
+    //input keys
+    keyEnter = max(keyboard_check_pressed(vk_enter),mouse_check_button_pressed(mb_left),0);
+    
+    //mouse input
+    for(i = 0; i &lt; array_length_1d(menuItems); i++)
     {
-        menuIndex = i;
+        if(mouse_y &gt; (menuY + (i-(1/2))*menuSpace) &amp;&amp; mouse_y &lt; (menuY + (i+(1/2))*menuSpace)) 
+        {
+            menuIndex = i;
+        }
+    }
+
+    //menu output
+    if (keyEnter) callMenu();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///commands
+if(keyboard_check_pressed(vk_delete)) room_goto(rm_menu);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///run island generation
+if(!genComplete)
+{
+    switch(global.genType)
+    {
+        case"PN":
+        {
+            genComplete = genPerlinIslands();     
+            break;
+        }
     }
 }
-
-//menu output
-callMenu();
 </string>
           </argument>
         </arguments>
@@ -118,18 +181,21 @@ callMenu();
           <argument>
             <kind>1</kind>
             <string>///draw menu
-//draw items
-draw_set_colour(c_black);
-draw_set_font(fontMenu);
-draw_set_halign(fa_left);
-draw_set_valign(fa_center);
-for(i = 0; i &lt; array_length_1d(menuItems); i++)
+if(room = rm_menu)
 {
-    draw_text(menuX,menuY+menuSpace*i,menuItems[i]);
-}
+    //draw items
+    draw_set_colour(c_black);
+    draw_set_font(fontMenu);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_center);
+    for(i = 0; i &lt; array_length_1d(menuItems); i++)
+    {
+        draw_text(menuX,menuY+menuSpace*i,menuItems[i]);
+    }
 
-//draw cursor
-draw_sprite(spr_cursor,0,menuX-16,menuY+menuSpace*menuIndex);
+    //draw cursor
+    draw_sprite(spr_cursor,0,menuX-16,menuY+menuSpace*menuIndex);
+}
 </string>
           </argument>
         </arguments>
