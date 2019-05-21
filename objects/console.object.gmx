@@ -81,15 +81,20 @@ menuY = 128;
           <argument>
             <kind>1</kind>
             <string>///menu movement
-//input
-for(i = 0; i &lt; array_length_1d(menuItems) - 1; i++)
+//input keys
+keyEnter = max(keyboard_check_pressed(vk_enter),mouse_check_button_pressed(mb_left),0);
+
+//mouse input
+for(i = 0; i &lt; array_length_1d(menuItems); i++)
 {
-    if(mouse_x &gt; (menuX) &amp;&amp; mouse_x &lt; (menuX + 316)
-    &amp;&amp; mouse_y &gt; (menuY + (i-(1/2))*menuSpace) &amp;&amp; mouse_x &lt; (menuY + (i+(1/2))*menuSpace)) 
+    if(mouse_y &gt; (menuY + (i-(1/2))*menuSpace) &amp;&amp; mouse_y &lt; (menuY + (i+(1/2))*menuSpace)) 
     {
         menuIndex = i;
     }
 }
+
+//menu output
+callMenu();
 </string>
           </argument>
         </arguments>
@@ -113,14 +118,18 @@ for(i = 0; i &lt; array_length_1d(menuItems) - 1; i++)
           <argument>
             <kind>1</kind>
             <string>///draw menu
+//draw items
 draw_set_colour(c_black);
 draw_set_font(fontMenu);
 draw_set_halign(fa_left);
 draw_set_valign(fa_center);
-for(i = 0; i &lt; array_length_1d(menuItems) - 1; i++)
+for(i = 0; i &lt; array_length_1d(menuItems); i++)
 {
     draw_text(menuX,menuY+menuSpace*i,menuItems[i]);
 }
+
+//draw cursor
+draw_sprite(spr_cursor,0,menuX-16,menuY+menuSpace*menuIndex);
 </string>
           </argument>
         </arguments>
