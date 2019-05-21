@@ -8,6 +8,15 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\fontMenu</font>
+  </fonts>
+  <objects name="objects">
+    <object>objects\console</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\rm_islands</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
