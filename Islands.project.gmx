@@ -8,12 +8,15 @@
   <sprites name="sprites">
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_island</sprite>
+    <sprite>sprites\consoleMask</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\callMenu.gml</script>
-    <script>scripts\genPerlinIslands.gml</script>
+    <script>scripts\genPerlinSmall.gml</script>
+    <script>scripts\genPerlinLarge.gml</script>
+    <script>scripts\genPerlinSpiral.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fontMenu</font>
